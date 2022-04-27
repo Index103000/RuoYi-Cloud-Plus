@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
+
     <!-- 日志存放路径 -->
-    <property name="log.path" value="logs/ruoyi-gen"/>
+    <property name="log.path" value="logs/${project.artifactId}"/>
     <!-- 日志输出格式 -->
     <property name="console.log.pattern"
               value="%red(%d{yyyy-MM-dd HH:mm:ss}) %green([%thread]) %highlight(%-5level) %boldMagenta(%logger{36}%n) - %msg%n"/>
@@ -99,6 +100,15 @@
         <appender-ref ref="file_error"/>
     </appender>
 
+    <!--输出到logstash的appender-->
+    <appender name="logstash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <!--可以访问的logstash日志收集端口-->
+        <destination>${logstash.address}</destination>
+        <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder">
+            <customFields>{"spring.application.name":"${project.artifactId}"}</customFields>
+        </encoder>
+    </appender>
+
     <!-- 系统模块日志级别控制  -->
     <logger name="com.ruoyi" level="info"/>
     <!-- Spring日志级别控制  -->
@@ -106,6 +116,7 @@
 
     <root level="info">
         <appender-ref ref="console"/>
+        <appender-ref ref="logstash"/>
     </root>
 
     <!--系统操作日志-->
