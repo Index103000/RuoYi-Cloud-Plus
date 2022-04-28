@@ -11,10 +11,12 @@ services:
       cluster.name: elasticsearch
       # 以单一节点模式启动
       discovery.type: single-node
-      ES_JAVA_OPTS: "-Xms512m -Xmx8g"
+      ES_JAVA_OPTS: "-Xms512m -Xmx512m"
     volumes:
       - /docker/elk/elasticsearch/plugins:/usr/share/elasticsearch/plugins
+      # data 文件夹需赋予读写权限 否则无法写入数据 参考文件夹下 README.md 说明
       - /docker/elk/elasticsearch/data:/usr/share/elasticsearch/data
+      - /docker/elk/elasticsearch/logs:/usr/share/elasticsearch/logs
     restart: always
     networks:
       elk_net:
