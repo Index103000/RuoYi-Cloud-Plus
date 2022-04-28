@@ -172,9 +172,6 @@ logging:
     com.alibaba.nacos: warn
   config: classpath:logback.xml
 
-logstash:
-  address: localhost:4560
-
 # Sa-Token配置
 sa-token:
   # token名称 (同时也是cookie名称)
