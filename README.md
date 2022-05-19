@@ -77,6 +77,13 @@
 >[参考文档 Wiki](https://gitee.com/JavaLionLi/RuoYi-Cloud-Plus/wikis/pages)
 >>[https://gitee.com/JavaLionLi/RuoYi-Cloud-Plus/wikis/pages](https://gitee.com/JavaLionLi/RuoYi-Cloud-Plus/wikis/pages)
 
+## 基础部署命令
+```shell
+# 打包dev
+mvn clean package -D maven.test.skip=true -P dev
+# 部署docker镜像
+mvn docker:build -rf :ruoyi-cloud-plus
+```
 
 ## 软件架构图
 
@@ -92,12 +99,6 @@
 * github 地址 [RuoYi-Cloud-Plus-github](https://github.com/JavaLionLi/RuoYi-Cloud-Plus)
 * 分离版分支 [RuoYi-Vue-Plus](https://gitee.com/JavaLionLi/RuoYi-Vue-Plus)
 * 单模块 fast 分支 [RuoYi-Vue-Plus-fast](https://gitee.com/JavaLionLi/RuoYi-Vue-Plus/tree/fast/)
-
-## 捐献作者
-
-作者为兼职做开源,平时还需要工作,如果帮到了您可以请作者吃个盒饭  
-<img src="https://images.gitee.com/uploads/images/2022/0218/213734_b1b8197f_1766278.jpeg" width="300px" height="450px" />
-<img src="https://images.gitee.com/uploads/images/2021/0525/101713_3d18b119_1766278.jpeg" width="300px" height="450px" />
 
 ## 业务功能
 

@@ -52,7 +52,7 @@
         <!-- docker 配置 -->
         <docker.registry.url>192.168.150.40</docker.registry.url>
         <docker.registry.host>http://${docker.registry.url}:5001</docker.registry.host>
-        <docker.namespace>192.168.150.40/ruoyi</docker.namespace>
+        <docker.namespace>ruoyi</docker.namespace>
         <docker.plugin.version>1.2.2</docker.plugin.version>
     </properties>
 
@@ -313,7 +313,7 @@
                         <dockerDirectory>${project.basedir}</dockerDirectory>
                         <dockerHost>${docker.registry.host}</dockerHost>
                         <registryUrl>${docker.registry.url}</registryUrl>
-                        <serverId>harbor</serverId>
+                        <serverId>${docker.registry.url}</serverId>
                         <resources>
                             <resource>
                                 <targetPath>/</targetPath>
