@@ -83,6 +83,35 @@
 mvn clean package -D maven.test.skip=true -P dev
 # 部署docker镜像
 mvn docker:build -rf :ruoyi-cloud-plus
+
+# docker 开启端口 2375 供外部程序访问
+#将源码内 docker 文件夹上传到服务器(注意: 不要放到根目录)
+#进入 docker 目录 给shell脚本分配执行权限
+chmod 777 ~/docker/deploy.sh
+# 开放外网防火墙端口(内网服务无需开启)
+sh deploy.sh port
+# 放置挂载文件(切勿多次执行)
+sh deploy.sh mount
+
+# 启动基础服务(重点注意: 一定要确保根目录 /docker 存储文件夹 具有写权限)
+sh deploy.sh base
+
+# 基础服务之mysql
+# 导入数据库文件，对应文件在 sql 文件夹下，将sql导入到与sql文件名对应的数据库(不要放到一个库下)
+# 启用 mysql root 账号远程连接
+ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'ruoyi123';
+
+# 启动可视化服务
+sh deploy.sh monitor
+# 启动与停止业务服务(需要先构建服务镜像)
+sh deploy.sh start
+sh deploy.sh stop
+# 停止所有服务
+sh deploy.sh stopall
+# 删除所有容器
+sh deploy.sh rm
+# 删除所有空版本镜像
+sh deploy.sh rmiNoneTag
 ```
 
 ## 软件架构图

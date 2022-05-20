@@ -50,7 +50,7 @@
         <tencent.sms.version>3.1.500</tencent.sms.version>
 
         <!-- docker 配置 -->
-        <docker.registry.url>localhost</docker.registry.url>
+        <docker.registry.url>192.168.150.41</docker.registry.url>
         <docker.registry.host>http://${docker.registry.url}:5001</docker.registry.host>
         <docker.namespace>ruoyi</docker.namespace>
         <docker.plugin.version>1.2.2</docker.plugin.version>
